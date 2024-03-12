@@ -159,6 +159,8 @@ mvn -Pprod -DskipTests clean install
 
 You will get your deployable WAR in the `docs-web/target` directory.
 
+To run on web, go to localhost:8080/docs-web/src
+
 # Contributing
 
 All contributions are more than welcomed. Contributions may close an issue, fix a bug (reported or not reported), improve the existing code, add new feature, and so on.
