@@ -17,12 +17,12 @@ pipeline {
             }
         }
         stage('pmd') {
-            steps { sh 'mvn pmd:pmd' }
+            steps { bat 'mvn pmd:pmd' }
             }
         stage('Generate Surefire Reports') {
             steps {
                 // Generate Surefire reports
-                sh 'mvn surefire-report:report'
+                bat 'mvn surefire-report:report'
                 
 
             }
@@ -30,7 +30,7 @@ pipeline {
         stage('Generate Javadoc') {
             steps {
                 // Generate Javadoc
-                sh 'mvn javadoc:javadoc'
+                bat 'mvn javadoc:javadoc'
 
             }
         }
