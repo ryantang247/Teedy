@@ -11,7 +11,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run tests
-                bat 'mvn -Dmaven.test.failure.ignore=true -Dtest=TestCss,TestImageUtil test'
+                bat 'mvn -Dmaven.test.failure.ignore=true -Dtest=TestCss,TestImageUtil -DtestDirectory=/docs-core test'
             }
         }
         stage('Static Code Analysis') {
