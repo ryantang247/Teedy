@@ -2,15 +2,17 @@ package com.sismics.docs.core.dao.jpa;
 
 import com.sismics.docs.BaseTransactionalTest;
 import com.sismics.docs.core.dao.UserDao;
+import com.sismics.docs.core.dao.FileDao;
 import com.sismics.docs.core.model.jpa.User;
 import com.sismics.docs.core.util.TransactionUtil;
 import com.sismics.docs.core.util.authentication.InternalAuthenticationHandler;
 import org.junit.Assert;
 import org.junit.Test;
+import java.io.File;
 
 /**
  * Tests the persistance layer.
- * 
+ *
  * @author jtremeaux
  */
 public class TestJpa extends BaseTransactionalTest {
@@ -25,7 +27,7 @@ public class TestJpa extends BaseTransactionalTest {
         user.setRoleId("admin");
         user.setStorageQuota(10L);
         String id = userDao.create(user, "me");
-        
+
         TransactionUtil.commit();
 
         // Search a user by his ID
@@ -36,4 +38,5 @@ public class TestJpa extends BaseTransactionalTest {
         // Authenticate using the database
         Assert.assertNotNull(new InternalAuthenticationHandler().authenticate("username", "12345678"));
     }
+
 }

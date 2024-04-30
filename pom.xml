@@ -102,20 +102,60 @@
         <version>${org.apache.maven.plugins.maven-jar-plugin.version}</version>
       </plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>
-        <configuration>
-          <forkCount>1</forkCount>
-          <reuseForks>false</reuseForks>
-        </configuration>
-      </plugin>
+<!--      <plugin>-->
+<!--        <groupId>org.apache.maven.plugins</groupId>-->
+<!--        <artifactId>maven-surefire-plugin</artifactId>-->
+<!--        <version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>-->
+<!--        <configuration>-->
+<!--          <forkCount>1</forkCount>-->
+<!--          <reuseForks>false</reuseForks>-->
+<!--        </configuration>-->
+<!--      </plugin>-->
       
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
         <version>${org.eclipse.jetty.jetty-maven-plugin.version}</version>
+      </plugin>
+<!--      <plugin>-->
+<!--        <groupId>org.apache.maven.plugins</groupId>-->
+<!--        <artifactId>maven-pmd-plugin</artifactId>-->
+<!--        <version>3.21.2</version>-->
+<!--        &lt;!&ndash; or use version from pluginManagement &ndash;&gt;-->
+<!--        <configuration> &lt;!&ndash; failOnViolation is actually true by default, but can be disabled &ndash;&gt;-->
+<!--          <failOnViolation>false</failOnViolation> &lt;!&ndash; printFailingErrors is pretty useful &ndash;&gt;-->
+<!--          <printFailingErrors>true</printFailingErrors>-->
+<!--          <rulesets>-->
+<!--            <ruleset>./practice-answer.xml</ruleset>-->
+<!--          </rulesets>-->
+<!--        </configuration>-->
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <goals>-->
+<!--              <goal>check</goal>-->
+<!--            </goals>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--      </plugin>-->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.9</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <!-- attached to Maven test phase -->
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
