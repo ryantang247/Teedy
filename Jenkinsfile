@@ -14,24 +14,24 @@ pipeline {
 //                 bat 'mvn -Dmaven.test.failure.ignore=true test'
 //             }
 //         }
-        stage('Install Dependencies') {
-            steps {
-                // Install project dependencies
-                bat 'mvn -DskipTests clean install'
-            }
-        }
-        stage('Static Code Analysis') {
-            steps {
-                // Run PMD for static code analysis
-                bat 'mvn pmd:pmd'
-            }
-        }
-        stage('Generate Surefire Reports') {
-            steps {
-                // Generate Surefire reports
-                bat 'mvn surefire-report:report'
-            }
-        }
+//         stage('Install Dependencies') {
+//             steps {
+//                 // Install project dependencies
+//                 bat 'mvn -DskipTests clean install'
+//             }
+//         }
+//         stage('Static Code Analysis') {
+//             steps {
+//                 // Run PMD for static code analysis
+//                 bat 'mvn pmd:pmd'
+//             }
+//         }
+//         stage('Generate Surefire Reports') {
+//             steps {
+//                 // Generate Surefire reports
+//                 bat 'mvn surefire-report:report'
+//             }
+//         }
         stage('Generate Javadoc') {
             steps {
                 // Generate Javadoc
