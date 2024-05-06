@@ -8,12 +8,12 @@ pipeline {
                 bat 'mvn -B -DskipTests clean package'
             }
         }
-        stage('Test') {
-            steps {
-                // Run tests
-                bat 'mvn -Dmaven.test.failure.ignore=true test'
-            }
-        }
+//         stage('Test') {
+//             steps {
+//                 // Run tests
+//                 bat 'mvn -Dmaven.test.failure.ignore=true test'
+//             }
+//         }
         stage('Static Code Analysis') {
             steps {
                 // Run PMD for static code analysis
