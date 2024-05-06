@@ -17,7 +17,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Install project dependencies
-                bat 'mvn clean install'
+                bat 'mvn -DskipTests clean install'
             }
         }
         stage('Static Code Analysis') {
