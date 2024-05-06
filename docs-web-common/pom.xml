@@ -18,7 +18,7 @@
     <!-- Dependencies to Docs -->
     <dependency>
       <groupId>com.sismics.docs</groupId>
-      <artifactId>docs-web-common</artifactId>
+      <artifactId>docs-core</artifactId>
     </dependency>
     
     <!-- Dependencies to Jersey -->
