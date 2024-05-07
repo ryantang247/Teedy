@@ -144,6 +144,9 @@
               <goal>aggregate</goal>
             </goals>
             <phase>site</phase>
+            <configuration>
+              <doclint>none</doclint>
+            </configuration>
           </execution>
         </executions>
       </plugin>

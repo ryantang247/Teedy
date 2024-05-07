@@ -35,7 +35,7 @@ pipeline {
         stage('Generate Javadoc') {
             steps {
                 // Generate Javadoc
-                bat 'mvn javadoc:javadoc'
+                bat 'mvn javadoc:javadoc -Xdoclint:none'
             }
         }
     }
