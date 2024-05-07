@@ -14,12 +14,12 @@ pipeline {
 //                 bat 'mvn -Dmaven.test.failure.ignore=true test'
 //             }
 //         }
-//         stage('Install Dependencies') {
-//             steps {
-//                 // Install project dependencies
-//                 bat 'mvn -DskipTests clean install'
-//             }
-//         }
+        stage('Install Dependencies') {
+            steps {
+                // Install project dependencies
+                bat 'mvn -DskipTests clean install'
+            }
+        }
 //         stage('Static Code Analysis') {
 //             steps {
 //                 // Run PMD for static code analysis
