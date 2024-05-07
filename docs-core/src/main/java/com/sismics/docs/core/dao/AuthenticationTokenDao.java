@@ -47,7 +47,6 @@ public class AuthenticationTokenDao {
      * Deletes the authentication token.
      * 
      * @param authenticationTokenId Authentication token ID
-     * @throws Exception
      */
     public void delete(String authenticationTokenId) throws Exception {
         EntityManager em = ThreadLocalContext.get().getEntityManager();
@@ -63,7 +62,6 @@ public class AuthenticationTokenDao {
      * Deletes old short lived tokens.
      *
      * @param userId User ID
-     * @throws Exception
      */
     public void deleteOldSessionToken(String userId) {
         StringBuilder sb = new StringBuilder("delete from T_AUTHENTICATION_TOKEN AS ato ");
