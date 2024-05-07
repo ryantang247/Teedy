@@ -137,6 +137,9 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>3.6.3</version>
+        <configuration>
+          <doclint>none</doclint>
+        </configuration>
         <executions>
           <execution>
             <id>aggregate</id>
@@ -144,9 +147,7 @@
               <goal>aggregate</goal>
             </goals>
             <phase>site</phase>
-            <configuration>
-              <doclint>none</doclint>
-            </configuration>
+
           </execution>
         </executions>
       </plugin>
