@@ -1,51 +1,39 @@
 pipeline {
     agent any
-    
     stages {
-        stage('Build') {
+        stage('Package') {
             steps {
-                // Build your Maven project
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ryantang247/Teedy.git']])
                 bat 'mvn -B -DskipTests clean package'
             }
         }
-//         stage('Test') {
-//             steps {
-//                 // Run tests
-//                 bat 'mvn -Dmaven.test.failure.ignore=true test'
-//             }
-//         }
-        stage('Install Dependencies') {
+        // Building Docker images
+        stage('Building image') {
             steps {
-                // Install project dependencies
-                bat 'mvn -DskipTests clean install'
+                script {
+                    docker.build("ryantang247/practicedocker:newversion")
+                    bat 'docker tag ryantang247/practicedocker:newversion ryantang247/practicedocker:firstversion'
+                }
             }
         }
-        stage('Static Code Analysis') {
+        // Uploading Docker images into Docker Hub
+        stage('Upload image') {
             steps {
-                // Run PMD for static code analysis
-                bat 'mvn pmd:pmd'
+                script {
+                    withCredentials([usernameColonPassword(credentialsId: 'ryantang247', variable: 'docker-acc')]) {
+                        bat 'docker login -u ryantang247 -p %docker-acc%'
+                    }
+                    bat 'docker push ryantang247/practicedocker:firstversion'
+                }
             }
         }
-        stage('Generate Surefire Reports') {
+        // Running Docker container
+        stage('Run containers') {
             steps {
-                // Generate Surefire reports
-                bat 'mvn surefire-report:report'
+                script {
+                    bat 'timeout 50 docker run ryantang247/practicedocker:firstversion'
+                }
             }
-        }
-        stage('Generate Javadoc') {
-            steps {
-                // Generate Javadoc
-                bat 'mvn javadoc:javadoc --fail-never'
-            }
-        }
-    }
-
-    post {
-        always {
-            // Archive artifacts
-            archiveArtifacts artifacts: '**/target/site/**', fingerprint: true
-            archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
-            archiveArtifacts artifacts: '**/target/**/*.war', fingerprint: true
         }
     }
 }
