@@ -20,8 +20,8 @@ pipeline {
         stage('Upload image') {
             steps {
                 script {
-                    withCredentials([usernameColonPassword(credentialsId: 'ryantang247', variable: 'docker-acc')]) {
-                        bat 'docker login -u ryantang247 -p %docker-acc%'
+                    withCredentials([usernameColonPassword(credentialsId: 'dockerhub-credentials', variable: 'docker-acc')]) {
+                        bat 'docker login -u %docker-acc% -p %docker-acc:.*//}'
                     }
                     bat 'docker push ryantang247/practicedocker:firstversion'
                 }
@@ -31,7 +31,8 @@ pipeline {
         stage('Run containers') {
             steps {
                 script {
-                    bat 'timeout 50 docker run ryantang247/practicedocker:firstversion'
+                    bat 'docker run -d ryantang247/practicedocker:firstversion'
+                    bat 'timeout /t 50'
                 }
             }
         }
