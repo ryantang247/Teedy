@@ -11,8 +11,8 @@ pipeline {
         stage('Building image') {
             steps {
                 script {
-                    docker.build("ryantang247/practicedocker:newversion")
-                    bat 'docker tag ryantang247/practicedocker:newversion ryantang247/practicedocker:firstversion'
+                    docker.build("teedy-ryantang247")
+                    bat "docker tag teedy-ryantang247 ryantang247/teedy-ryantang247"
                 }
             }
         }
@@ -20,10 +20,10 @@ pipeline {
         stage('Upload image') {
             steps {
                 script {
-                    withCredentials([usernameColonPassword(credentialsId: 'dockerhub-credentials', variable: 'docker-acc')]) {
-                        bat 'docker login -u %docker-acc% -p %docker-acc:.*//}'
+                    withCredentials([usernamePassword(credentialsId: 'ryantang-dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        bat "docker login -u ryantang247 -p \"$DOCKER_PASSWORD\""
+                        bat 'docker push ryantang247/teedy-ryantang247'
                     }
-                    bat 'docker push ryantang247/practicedocker:firstversion'
                 }
             }
         }
@@ -31,8 +31,8 @@ pipeline {
         stage('Run containers') {
             steps {
                 script {
-                    bat 'docker run -d ryantang247/practicedocker:firstversion'
-                    bat 'timeout /t 50'
+                    bat 'docker run -d ryantang247/teedy-ryantang247'
+
                 }
             }
         }
