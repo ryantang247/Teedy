@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     bat 'docker run -d ryantang247/teedy-ryantang247'
-                    bat 'timeout /t 50'
+
                 }
             }
         }
